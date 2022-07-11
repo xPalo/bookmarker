@@ -49,21 +49,21 @@ body {
     border-bottom-color: #ffc107 !important;
 }
 
-.warning:hover {
-    border-bottom-color: rgba(255, 193, 7, .25);
-}
+/*.warning:hover {*/
+/*    border-bottom-color: rgba(255, 193, 7, .25);*/
+/*}*/
 
-.danger:hover {
-    border-bottom-color: rgba(220, 53, 69, .25);
-}
+/*.danger:hover {*/
+/*    border-bottom-color: rgba(220, 53, 69, .25);*/
+/*}*/
 
-.success {
-    color: #28a745 !important;
-    border-bottom-color: #28a745 !important;
-}
-.success:hover {
-    border-bottom-color: rgba(40, 167, 69, .25);
-}
+/*.success {*/
+/*    color: #28a745 !important;*/
+/*    border-bottom-color: #28a745 !important;*/
+/*}*/
+/*.success:hover {*/
+/*    border-bottom-color: rgba(40, 167, 69, .25);*/
+/*}*/
 
 .info {
     border-bottom-color: #0dcaf0 !important;
