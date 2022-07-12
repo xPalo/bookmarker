@@ -1,0 +1,36 @@
+<div class="p-5 mb-4 text-light rounded-3 text-start">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold"><%= book.title %></h1>
+    <p class="card-text">
+      <strong>ISBN:</strong>
+      <%= book.isbn %>
+    </p>
+    <p class="card-text">
+      <strong>Author:</strong>
+      <%= link_to "#{book.author.first_name} #{book.author.last_name}", book.author.user, class:"text-light" %>
+    </p>
+    <p class="card-text">
+      <strong>Review by:</strong>
+      <%= link_to "#{book.author.user.first_name} #{book.author.user.last_name}", book.author.user, class:"text-light" %>
+    </p>
+
+    <% if book.notes %>
+      <hr>
+      <p class="card-text">
+        <strong>My thoughts</strong>
+        <br>
+        <%= "#{book.notes}" %>
+      </p>
+    <% end %>
+
+    <% if @book.author.user == current_user %>
+      <div class="d-flex justify-content-center">
+        <%= link_to "Edit", edit_book_path(@book), class:"btn btn-light me-3" %>
+        <%= link_to "Back", books_path, class:"btn btn-info me-3" %>
+        <%= button_to "Delete", @book, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class:"btn btn-danger me-3" %>
+      </div>
+    <% else %>
+      <%= button_to "Like", like_user_path, data: { method: :post }, class:"btn btn-info my-2" %>
+    <% end %>
+  </div>
+</div>

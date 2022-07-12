@@ -1,0 +1,35 @@
+<h1 class="text-center">Books</h1>
+
+<div id="books" class="text-center mx-auto w-100">
+  <% if @books.length > 0 %>
+    <table class="table table-hover text-light table-active">
+      <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Author</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @books.each do |book| %>
+        <% if current_user == book&.author&.user %>
+          <tr class="text-light">
+            <td><%= link_to "#{book.title}", book, class:"text-light text-decoration-none" %></td>
+            <td><%= book.isbn %></td>
+            <td><%= link_to "#{book.author.first_name} #{book.author.last_name}", book.author, class:"text-light"  %></td>
+            <td><%= link_to "Show", book, class:"text-info" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+
+      </tbody>
+    </table>
+  <% end %>
+  <%#= "AUTHOR_IDS: #{@author_ids}" %>
+  <%= page_entries_info @books %>
+  <%= paginate @books, theme: 'bootstrap-5', pagination_class: "my-3 pagination-sm flex-wrap justify-content-center" %>
+  <div class="d-flex justify-content-start">
+    <%= link_to "New book", new_book_path, class:"btn btn-light text-success" %>
+  </div>
+</div>

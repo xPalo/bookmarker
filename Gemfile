@@ -15,6 +15,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "dotenv-rails"
 gem "devise", "~> 4.8", ">= 4.8.1"
+gem "omniauth-google-oauth2", "~> 0.8.2"
 # gem "kaminari"
 # gem "bootstrap5-kaminari-views"
 

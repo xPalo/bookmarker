@@ -8,10 +8,19 @@
         <%=  link_to 'Log in', new_user_session_path, class:"btn btn-light px-4 gap-3"  %>
         <%=  link_to 'Sign up', new_user_registration_path, class:"btn btn-dark px-4"  %>
       <% end %>
+
     </div>
   </div>
 
-  <div class="m-4">
-    <%= button_to "Connect to Twitter", "auth/twitter", method: :post, class:"btn btn-outline-info px-4" %>
-  </div>
+  <% unless user_signed_in? %>
+    <div class="row my-2">
+      <div class="col-md-12">
+        <a class="btn btn-google btn-block text-uppercase btn-outline" href="<%= user_google_oauth2_omniauth_authorize_path %>"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Sign up Using Google</a>
+      </div>
+    </div>
+  <% end %>
+
+<!--  <div class="m-4">-->
+    <%#= button_to "Connect to Twitter", "auth/twitter", method: :post, class:"btn btn-outline-info px-4" %>
+<!--  </div>-->
 </div>

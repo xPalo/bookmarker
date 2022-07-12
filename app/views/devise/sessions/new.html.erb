@@ -22,5 +22,13 @@
     <div class="actions">
       <%= f.submit "Log in", class:"btn btn-light my-auto" %>
     </div>
+
   <% end %>
+
+  <div class="row my-2">
+    <div class="col-md-12">
+      <a class="btn btn-google btn-block text-uppercase btn-outline" href="<%= user_google_oauth2_omniauth_authorize_path %>"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Sign In Using Google</a>
+    </div>
+  </div>
+
 </div>
