@@ -1,0 +1,19 @@
+<h1 class="text-center">New reading record</h1>
+
+  <script>
+      $(document).ready(function()
+      {
+          $("#book_id_select").select2({
+              placeholder: "Pick a book",
+              allowClear: true
+          });
+      });
+  </script>
+
+<%= render "form", reading_record: @reading_record, class:"text-black" %>
+
+<br>
+
+<div class="w-75 mx-auto">
+  <%= link_to "Home", root_path, class:"btn btn-outline-light" %>
+</div>

@@ -10,7 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *
  *= require_self
  */
 
@@ -124,4 +124,9 @@ body {
     color: #545454;
     background-color: #ffffff;
     box-shadow: 0 1px 2px 1px #ddd;
+}
+
+/* SELECT2 */
+.select2-results__option {
+    color: black !important;
 }

@@ -16,8 +16,10 @@ gem "bootsnap", require: false
 gem "dotenv-rails"
 gem "devise", "~> 4.8", ">= 4.8.1"
 gem "omniauth-google-oauth2", "~> 0.8.2"
-# gem "kaminari"
-# gem "bootstrap5-kaminari-views"
+gem "select2-rails"
+gem "jquery-rails"
+gem "kaminari"
+gem "bootstrap5-kaminari-views"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

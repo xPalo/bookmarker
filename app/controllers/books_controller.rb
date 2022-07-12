@@ -4,7 +4,6 @@ class BooksController < ApplicationController
   # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-
     @author_ids = current_user.authors.collect(&:id)
     @books = Book.where(author_id: @author_ids).page(params[:page])
   end
