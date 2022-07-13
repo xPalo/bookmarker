@@ -1,7 +1,20 @@
 class ReadingRecordsController < ApplicationController
-  before_action :set_reading_record, only: %i[ show edit update destroy ]
+  before_action :set_reading_record, only: %i[ show edit update destroy mark_as_read ]
   before_action :authenticate_user!
   # before_action :correct_user, only: [:edit, :update, :destroy]
+
+  def mark_as_read
+    s_params = strong_params
+    s_params[:status] = "read"
+
+    if @reading_record.update(s_params)
+      format.html { redirect_to reading_records_url(@reading_record), notice: "Record was successfully updated." }
+      format.json { render :show, status: :ok, location: @reading_record }
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @reading_record.errors, status: :unprocessable_entity }
+    end
+  end
 
   def index
     #@authors = current_user.authors.page(params[:page])
