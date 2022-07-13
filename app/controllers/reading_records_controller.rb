@@ -5,10 +5,11 @@ class ReadingRecordsController < ApplicationController
 
   def index
     #@authors = current_user.authors.page(params[:page])
-    @reading_records = current_user.reading_records.page(params[:page])
-    @read = @reading_records.where(status: "read").length
-    @reading = @reading_records.where(status: "reading").length
-    @plan_to_read = @reading_records.where(status: "plan_to_read").length
+    #@reading_records = current_user.reading_records
+    @reading_records = ReadingRecord.includes(:book).where(user_id: current_user.id)
+    @read = @reading_records.where(status: "read").page(params[:page])
+    @reading = @reading_records.where(status: "reading").page(params[:page])
+    @plan_to_read = @reading_records.where(status: "plan_to_read").page(params[:page])
   end
 
   def show

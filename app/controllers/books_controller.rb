@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-    @current_authors_options = Author.where("user_id = ?", current_user.id)
+    @current_authors_options = Author.all
   end
 
   def edit

@@ -12,14 +12,14 @@ class AuthorsController < ApplicationController
   end
 
   def new
-    @author = current_user.authors.build
+    @author = Author.new
   end
 
   def edit
   end
 
   def create
-    @author = current_user.authors.build(author_params)
+    @author = Author.new(author_params)
 
     respond_to do |format|
       if @author.save
@@ -65,6 +65,6 @@ class AuthorsController < ApplicationController
     end
 
     def author_params
-      params.require(:author).permit(:first_name, :last_name, :country, :user_id)
+      params.require(:author).permit(:first_name, :last_name, :country)
     end
 end

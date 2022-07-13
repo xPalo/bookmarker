@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   #get "users/auth/google_oauth2"
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   root "home#index"
+  get "/explore", to: "home#explore"
 end

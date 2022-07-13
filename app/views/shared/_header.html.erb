@@ -1,7 +1,16 @@
 <div>
   <%= link_to 'Bookmarker', root_path, class:"navbar-brand fs-2 my-auto fw-bold float-md-start text-white" %>
   <nav class="nav nav-masthead justify-content-center float-md-end">
+    <%= link_to 'Explore', explore_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(explore_path, "light")}" %>
+
     <% if user_signed_in? %>
+      <% if current_user.is_admin? %>
+        ||
+        <%= link_to 'New Book', new_book_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(new_book_path, "light")}" %>
+        <%= link_to 'New Author', new_author_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(new_author_path, "light")}" %>
+        ||
+      <% end %>
+
       <%= link_to 'Records', reading_records_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(reading_records_path, "light")}" %>
       <%#= link_to 'Explore', users_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(users_path)}" %>
       <%= link_to 'Profile', edit_user_registration_path, class:"nav-link fw-bold py-1 px-2 text-warning #{current_class?(edit_user_registration_path, "warning")}" %>
