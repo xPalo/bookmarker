@@ -1,0 +1,16 @@
+<div class="mx-2 text-light rounded-3 text-start">
+  <div class="container-fluid">
+    <h5 class="display-7">
+      <%= render partial: "shared/star_rating", locals: {rating: (review.score*10)} %>
+    </h5>
+    <p class="card-text">
+      <strong>Thoughts:</strong>
+      <%= review.body %>
+    </p>
+
+    <p class="card-text">
+      <strong>By:</strong>
+      <%= review.user.full_name %>
+    </p>
+  </div>
+</div>

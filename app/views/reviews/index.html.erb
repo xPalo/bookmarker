@@ -1,14 +1,12 @@
-<%= render @book %>
-
-<% if @book_reviews.length > 0 %>
+<% if @reviews.length > 0 %>
   <table class="table table-hover text-light table-active">
     <thead>
-      <tr>
-        <th scope="col">Reviews</th>
-      </tr>
+    <tr>
+      <th scope="col">Reviews</th>
+    </tr>
     </thead>
     <tbody>
-    <% @book_reviews.each do |review| %>
+    <% @reviews.each do |review| %>
       <tr class="text-light m-0">
         <td><%= render review %></td>
       </tr>

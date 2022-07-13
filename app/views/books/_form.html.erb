@@ -13,10 +13,6 @@
       </div>
     <% end %>
 
-    <%# if Author.where("user_id = ?", current_user.id).length == 0 %>
-      <%# flash.alert = "Your list of authors is currently empty" %>
-      <%#= link_to "New author", new_author_path, class:"btn btn-outline-light my-2" %>
-    <%# else %>
       <div class="form-group mb-3">
         <%= form.label :title %>
         <%= form.text_field :title, class:"form-control" %>

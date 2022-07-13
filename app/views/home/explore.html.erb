@@ -16,7 +16,7 @@
           <th scope="col">Title</th>
           <th scope="col">SK Title</th>
           <th scope="col">Author</th>
-          <th scope="col">Reviews</th>
+          <th scope="col">Rating</th>
         </tr>
         </thead>
         <tbody>
@@ -25,9 +25,8 @@
             <td><%= link_to "#{book.title}", book, class:"text-light text-decoration-none" %></td>
             <td><%= link_to "#{book.title_sk}", book, class:"text-light text-decoration-none"  %></td>
             <td><%= link_to "#{book.author.full_name}", book.author, class:"text-light text-decoration-none"  %></td>
-            <td>
-              -
-            </td>
+<!--            <td><%#= link_to "#{book.rating}", book, class:"text-light text-decoration-none" %></td>-->
+            <td><%= render partial: "shared/star_rating", locals: {rating: book.rating}  %></td>
 
           </tr>
         <% end %>

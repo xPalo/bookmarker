@@ -8,4 +8,13 @@ class Book < ApplicationRecord
   validates :title_sk, presence: true
   validates :isbn, presence: true
 
+  def rating
+    if self.reviews.length > 0
+      sum = 0
+      self.reviews.each { |r| sum += r.score }
+      (sum/self.reviews.length)*10
+    else
+      nil
+    end
+  end
 end

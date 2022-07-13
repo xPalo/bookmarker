@@ -46,21 +46,21 @@ class ReadingRecordsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @author.update(author_params)
-        format.html { redirect_to author_url(@author), notice: "Author was successfully updated." }
-        format.json { render :show, status: :ok, location: @author }
+      if @reading_record.update(author_params)
+        format.html { redirect_to author_url(@reading_record), notice: "Record was successfully updated." }
+        format.json { render :show, status: :ok, location: @reading_record }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
+        format.json { render json: @reading_record.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @author.destroy
+    @reading_record.destroy
 
     respond_to do |format|
-      format.html { redirect_to authors_url, notice: "Author was successfully destroyed." }
+      format.html { redirect_to authors_url, notice: "Record was successfully destroyed." }
       format.json { head :no_content }
     end
   end

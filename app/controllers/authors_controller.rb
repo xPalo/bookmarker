@@ -5,7 +5,7 @@ class AuthorsController < ApplicationController
 
   def index
     #@authors = current_user.authors.page(params[:page])
-    @author = Author.all
+    @authors = Author.all.page(params[:page])
   end
 
   def show
