@@ -1,15 +1,20 @@
 class ReadingRecordsController < ApplicationController
-  before_action :set_reading_record, only: %i[ show edit update destroy mark_as_read ]
+  before_action :set_reading_record, only: [:show, :edit, :update, :destroy, :mark_as_read]
   before_action :authenticate_user!
   # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def mark_as_read
-    s_params = strong_params
-    s_params[:status] = "read"
+    s_params = Hash.new
+    s_params[:user_id] = @reading_record.user_id
+    s_params[:book_id] = @reading_record.book_id
+    s_params[:status] = 2
+    s_params[:finished_reading_at] = Time.now
 
     if @reading_record.update(s_params)
-      format.html { redirect_to reading_records_url(@reading_record), notice: "Record was successfully updated." }
-      format.json { render :show, status: :ok, location: @reading_record }
+      respond_to do |format|
+        format.html { redirect_to reading_records_url(@reading_record), notice: "Record was successfully marked_as_read." }
+        format.json { render :show, status: :ok, location: @reading_record }
+      end
     else
       format.html { render :edit, status: :unprocessable_entity }
       format.json { render json: @reading_record.errors, status: :unprocessable_entity }
@@ -17,8 +22,6 @@ class ReadingRecordsController < ApplicationController
   end
 
   def index
-    #@authors = current_user.authors.page(params[:page])
-    #@reading_records = current_user.reading_records
     @reading_records = ReadingRecord.includes(:book).where(user_id: current_user.id)
     @read = @reading_records.where(status: "read").page(params[:page])
     @reading = @reading_records.where(status: "reading").page(params[:page])
@@ -59,7 +62,7 @@ class ReadingRecordsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @reading_record.update(author_params)
+      if @reading_record.update(strong_params)
         format.html { redirect_to author_url(@reading_record), notice: "Record was successfully updated." }
         format.json { render :show, status: :ok, location: @reading_record }
       else

@@ -110,7 +110,7 @@
               <td><%= link_to "#{rec.book.author.first_name} #{rec.book.author.last_name}", rec.book.author, class:"text-light"  %></td>
               <td><%= rec.status.titleize %></td>
 <!--              <td><%#= button_to "Mark as read", mark_as_read_reading_record_path(params[:id] = rec.id), class:"btn btn-link text-light", method: :patch %></td>-->
-              <td><%= button_to "Mark as read", mark_as_read_reading_record_path, method: :patch, params: { id: rec.id }  %></td>
+              <td><%= button_to "Mark as read", mark_as_read_reading_record_path(rec), method: :patch, class:"btn btn-link" %></td>
             </tr>
           <% end %>
 
