@@ -1,26 +1,27 @@
 <div>
   <%= link_to 'Bookmarker', root_path, class:"navbar-brand fs-2 my-auto fw-bold float-md-start text-white" %>
-  <nav class="nav nav-masthead justify-content-center float-md-end">
-    <%= link_to 'Explore', explore_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(explore_path, "light")}" %>
+  <nav class="nav nav-masthead justify-content-center float-md-end m-0">
+    <%= link_to 'Explore', explore_path, class:"nav-link fw-bold px-2 #{current_class?(explore_path, "light")}" %>
 
     <% if user_signed_in? %>
       <% if current_user.is_admin? %>
         ||
-        <%= link_to 'New Book', new_book_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(new_book_path, "light")}" %>
-        <%= link_to 'Books', books_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(books_path, "light")}" %>
-        <%= link_to 'New Author', new_author_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(new_author_path, "light")}" %>
-        <%= link_to 'Authors', authors_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(authors_path, "light")}" %>
+        <%= link_to 'New Book', new_book_path, class:"nav-link fw-bold px-2 #{current_class?(new_book_path, "light")}" %>
+        <%= link_to 'Books', books_path, class:"nav-link fw-bold px-2 #{current_class?(books_path, "light")}" %>
+        <%= link_to 'New Author', new_author_path, class:"nav-link fw-bold px-2 #{current_class?(new_author_path, "light")}" %>
+        <%= link_to 'Authors', authors_path, class:"nav-link fw-bold px-2 #{current_class?(authors_path, "light")}" %>
         ||
       <% end %>
 
-      <%= link_to 'My Records', reading_records_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(reading_records_path, "light")}" %>
+      <%= link_to 'My Records', reading_records_path, class:"nav-link fw-bold px-2 #{current_class?(reading_records_path, "light")}" %>
+      <%= link_to 'My Reviews', reviews_path, class:"nav-link fw-bold px-2 #{current_class?(reviews_path, "light")}" %>
       <%#= link_to 'Explore', users_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(users_path)}" %>
-      <%= link_to 'Profile', edit_user_registration_path, class:"nav-link fw-bold py-1 px-2 text-warning #{current_class?(edit_user_registration_path, "warning")}" %>
+      <%= link_to 'Profile', user_path(id: current_user.id), class:"nav-link fw-bold px-2 text-warning #{current_class?(user_path(id: current_user.id), "warning")}" %>
       <%#= link_to 'Profile', user_path(id: current_user.id), class:"nav-link fw-bold py-1 px-2 text-warning #{current_class?(user_path(id: current_user.id), "warning")}" %>
-      <%= button_to 'Log out', destroy_user_session_path, method: :delete, class:"btn btn-link nav-link fw-bold py-1 px-2 text-danger danger" %>
+      <%= button_to 'Log out', destroy_user_session_path, method: :delete, class:"btn btn-link nav-link fw-bold px-2 text-danger danger" %>
     <% else %>
-      <%= link_to 'Sign up', new_user_registration_path, class:"nav-link fw-bold py-1 px-2 #{current_class?(new_user_registration_path, "light")}" %>
-      <%= link_to 'Log in', new_user_session_path, class:"nav-link fw-bold py-1 px-2 text-info #{current_class?(new_user_session_path, "info")}" %>
+      <%= link_to 'Sign up', new_user_registration_path, class:"nav-link fw-bold px-2 #{current_class?(new_user_registration_path, "light")}" %>
+      <%= link_to 'Log in', new_user_session_path, class:"nav-link fw-bold px-2 text-info #{current_class?(new_user_session_path, "info")}" %>
     <% end %>
   </nav>
 </div>

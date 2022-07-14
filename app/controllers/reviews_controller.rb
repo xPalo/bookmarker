@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
     @reading_records = ReadingRecord.where(user_id: current_user.id, status: "read")
     @book_ids = @reading_records.collect(&:book_id)
     @books = Book.where(id: @book_ids)
+    @book_to_review =  Book.where(id: params[:book_to_review])
   end
 
   def edit

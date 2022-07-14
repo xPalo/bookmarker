@@ -14,6 +14,14 @@ class User < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
+  def have_read(book_id)
+    if ReadingRecord.where(user_id: self.id, book_id: book_id, status: "read").first != nil
+      true
+    else
+      false
+    end
+  end
+
   def self.from_omniauth(auth)
     user = User.find_by(email: auth.info.email)
     if user

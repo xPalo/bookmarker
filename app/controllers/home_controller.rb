@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   def explore
     @books = Book.reorder("title").includes(:author).page(params[:page])
-    @authors = Author.reorder("first_name").page(params[:page])
+    @authors = Author.all.page(params[:page])
+    @users = User.all.page(params[:page])
   end
 end

@@ -1,7 +1,24 @@
 class ReadingRecordsController < ApplicationController
-  before_action :set_reading_record, only: [:show, :edit, :update, :destroy, :mark_as_read]
+  before_action :set_reading_record, only: [:show, :edit, :update, :destroy, :mark_as_read, :mark_as_reading]
   before_action :authenticate_user!
-  # before_action :correct_user, only: [:edit, :update, :destroy]
+
+  def mark_as_reading
+    s_params = Hash.new
+    s_params[:user_id] = @reading_record.user_id
+    s_params[:book_id] = @reading_record.book_id
+    s_params[:status] = 1
+    s_params[:finished_reading_at] = nil
+
+    if @reading_record.update(s_params)
+      respond_to do |format|
+        format.html { redirect_to reading_records_url(@reading_record), notice: "Record was successfully marked as reading." }
+        format.json { render :show, status: :ok, location: @reading_record }
+      end
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @reading_record.errors, status: :unprocessable_entity }
+    end
+  end
 
   def mark_as_read
     s_params = Hash.new
@@ -12,7 +29,7 @@ class ReadingRecordsController < ApplicationController
 
     if @reading_record.update(s_params)
       respond_to do |format|
-        format.html { redirect_to reading_records_url(@reading_record), notice: "Record was successfully marked_as_read." }
+        format.html { redirect_to reading_records_url(@reading_record), notice: "Record was successfully marked as read." }
         format.json { render :show, status: :ok, location: @reading_record }
       end
     else

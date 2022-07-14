@@ -19,7 +19,7 @@
 
     <p class="card-text">
       <strong>Rating:</strong>
-      <%= book.rating %>
+      <%= "#{book.rating}%" %>
     </p>
 
     <% if current_user.is_admin? %>
@@ -31,7 +31,9 @@
         <%= link_to "Review", new_review_path, class:"btn btn-info me-3" %>
       </div>
     <% else %>
-      <%= link_to "Review", new_review_path, class:"btn btn-info me-3" %>
+      <% if current_user.have_read(book.id) == true %>
+        <%= link_to "Review", new_review_path(book_to_review: book.id), class:"btn btn-info me-3" %>
+      <% end %>
     <% end %>
   </div>
 </div>
