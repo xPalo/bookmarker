@@ -4,7 +4,14 @@ class BooksController < ApplicationController
   # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.reorder("title").page(params[:page])
+    #@books = Book.reorder("title").page(params[:page])
+
+    @books = Book.search(params[:search])
+    if @books.class == Array
+      @books = Kaminari.paginate_array(@books).page(params[:page])
+    else
+      @books = @books.page(params[:page])
+    end
   end
 
   def show

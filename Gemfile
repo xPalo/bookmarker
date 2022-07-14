@@ -21,6 +21,8 @@ gem "jquery-rails"
 gem "kaminari"
 gem "bootstrap5-kaminari-views"
 
+gem "image_processing"
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   # gem "rspec-rails", "~> 6.0.0.rc1"

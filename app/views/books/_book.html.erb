@@ -28,7 +28,9 @@
         <%= link_to "Back", books_path, class:"btn btn-info me-3" %>
         <%= button_to "Delete", @book, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class:"btn btn-danger me-3" %>
 
-        <%= link_to "Review", new_review_path, class:"btn btn-info me-3" %>
+        <% if current_user.have_read(book.id) == true %>
+          <%= link_to "Review", new_review_path(book_to_review: book.id), class:"btn btn-info me-3" %>
+        <% end %>
       </div>
     <% else %>
       <% if current_user.have_read(book.id) == true %>

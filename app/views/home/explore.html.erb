@@ -10,6 +10,13 @@
   </li>
 </ul>
 
+    <form action="explore" method="get" class="form-signin m-3">
+      <div class="form-group d-flex justify-content-center my-auto">
+        <input type="text" id="search" name="search" class="form-control w-50 mx-2">
+        <button type="submit" class="btn btn-outline-light mx-2">Find all</button>
+      </div>
+    </form>
+
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="methodA" role="tabpanel" aria-labelledby="pills-home-tab">
     <% if @books.length > 0 %>
@@ -73,27 +80,19 @@
   <div class="tab-pane fade" id="methodC" role="tabpanel" aria-labelledby="pills-home-tab">
 
     <% if @users.length > 0 %>
-      <table class="table text-light table-active">
-        <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
           <% @users.each do |user| %>
-            <tr class="text-light">
-              <td><%= user.full_name %></td>
-              <td><%= user.email %></td>
-              <td><%= link_to "Show", user, class:"text-info" %></td>
-            </tr>
+<!--            <tr class="text-light">-->
+<!--              <td><%#= user.full_name %></td>-->
+<!--              <td><%#= user.email %></td>-->
+<!--              <td><%#= link_to "Show", user, class:"text-info" %></td>-->
+<!--            </tr>-->
+          <%= render partial: "users/user_card", locals: {user: user}  %>
           <% end %>
-        </tbody>
-      </table>
     <% end %>
 
     <%= page_entries_info @users %>
     <%= paginate @users, theme: 'bootstrap-5', pagination_class: "my-3 pagination-sm flex-wrap justify-content-center" %>
   </div>
 </div>
+
+<%= render "shared/search_script" %>

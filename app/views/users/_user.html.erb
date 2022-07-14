@@ -1,15 +1,7 @@
 <div class="p-5 mb-4 text-light rounded-3 text-start">
   <div class="container-fluid py-5">
-    <h1 class="display-5 fw-bold"><%= user.full_name %></h1>
-    <p class="card-text">
-      <strong><%= user.email %></strong>
-    </p>
 
-    <% if user.bio %>
-      <p class="card-text">
-        <%= user.bio %>
-      </p>
-    <% end %>
+    <%= render partial: "users/user_card", locals: {user: user}  %>
 
     <p class="card-text">
     <% if user.reviews.length > 0 %>

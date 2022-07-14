@@ -1,6 +1,9 @@
 <h1 class="text-center">Books</h1>
 
 <div id="books" class="text-center mx-auto w-100">
+
+  <%= render "shared/search_form" %>
+
   <% if @books.length > 0 %>
     <table class="table text-light table-active">
       <thead>
@@ -31,3 +34,5 @@
     <%= link_to "New book", new_book_path, class:"btn btn-light text-success" %>
   </div>
 </div>
+
+<%= render "shared/search_script" %>

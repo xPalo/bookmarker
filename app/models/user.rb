@@ -6,9 +6,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[github google_oauth2]
 
+  has_one_attached :avatar
   validates :email, presence: true, uniqueness: true
-  #validates :first_name, presence: true
-  #validates :last_name, presence: true
+  after_commit :add_default_avatar, on: %i[create update]
 
   def full_name
     "#{self.first_name} #{self.last_name}"
@@ -19,6 +19,14 @@ class User < ApplicationRecord
       true
     else
       false
+    end
+  end
+
+  def avatar_thumbnail
+    if avatar.attached?
+      avatar.variant(resize: "150x150^", crop: "150x150+0+0").processed
+    else
+      "/default_avatar.png"
     end
   end
 
@@ -37,6 +45,18 @@ class User < ApplicationRecord
       end
     end
     user
+  end
+
+  private
+
+  def add_default_avatar
+    unless avatar.attached?
+      avatar.attach(
+        io: File.open(Rails.root.join("app", "assets", "images", "default_avatar.png")),
+        filename: "default_avatar.png",
+        content_type: "image/png"
+      )
+    end
   end
 
 end

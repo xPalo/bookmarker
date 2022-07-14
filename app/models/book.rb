@@ -17,4 +17,12 @@ class Book < ApplicationRecord
       nil
     end
   end
+
+  def self.search(search)
+    if search
+      Book.joins(:author).where("lower(title || title_sk || CONCAT_WS(' ', first_name, last_name)) LIKE ?", "%#{search.downcase}%")
+    else
+      Book.all
+    end
+  end
 end
