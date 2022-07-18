@@ -1,12 +1,12 @@
 <ul class="nav mb-3 d-flex justify-content-center text-center" id="pills-tab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="active btn btn-sm btn-outline-light mx-2" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#methodA" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Books</button>
+    <button id="methodAbtn" class="active btn btn-sm btn-outline-light mx-2" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#methodA" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Books</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="btn btn-sm btn-outline-light mx-2" data-bs-toggle="pill" data-bs-target="#methodB" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Authors</button>
+    <button id="methodBbtn" class="btn btn-sm btn-outline-light mx-2" data-bs-toggle="pill" data-bs-target="#methodB" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Authors</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="btn btn-sm btn-outline-light mx-2" data-bs-toggle="pill" data-bs-target="#methodC" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Users</button>
+    <button id="methodCbtn" class="btn btn-sm btn-outline-light mx-2" data-bs-toggle="pill" data-bs-target="#methodC" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Users</button>
   </li>
 </ul>
 
@@ -46,7 +46,7 @@
     <% end %>
 
     <%= page_entries_info @books %>
-    <%= paginate @books, theme: 'bootstrap-5', pagination_class: "my-3 pagination-sm flex-wrap justify-content-center" %>
+    <%= paginate @books, :remote => true, :param_name => "books_page", theme: 'bootstrap-5', pagination_class: "my-3 pagination-sm flex-wrap justify-content-center" %>
   </div>
 
   <div class="tab-pane fade" id="methodB" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -74,7 +74,7 @@
     <% end %>
 
     <%= page_entries_info @authors %>
-    <%= paginate @authors, theme: 'bootstrap-5', pagination_class: "my-3 pagination-sm flex-wrap justify-content-center" %>
+    <%= paginate @authors, :remote => true, :param_name => "authors_page", theme: 'bootstrap-5', pagination_class: "my-3 pagination-sm flex-wrap justify-content-center" %>
   </div>
 
   <div class="tab-pane fade" id="methodC" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -91,8 +91,24 @@
     <% end %>
 
     <%= page_entries_info @users %>
-    <%= paginate @users, theme: 'bootstrap-5', pagination_class: "my-3 pagination-sm flex-wrap justify-content-center" %>
+    <%= paginate @users, :remote => true, :param_name => "users_page", theme: 'bootstrap-5', pagination_class: "my-3 pagination-sm flex-wrap justify-content-center" %>
   </div>
 </div>
 
 <%= render "shared/search_script" %>
+
+<script type="text/javascript" charset="utf-8">
+
+    document.getElementById("methodAbtn").addEventListener("click", function(event){
+        event.preventDefault()
+    });
+    document.getElementById("methodBbtn").addEventListener("click", function(event){
+        event.preventDefault()
+    });
+    document.getElementById("methodCbtn").addEventListener("click", function(event){
+        event.preventDefault()
+    });
+
+    ('#books').html('<%= escape_javascript render(@books) %>');
+    $('.books').html('<%= escape_javascript(paginate(@books, :remote => true).to_s) %>');
+</script>

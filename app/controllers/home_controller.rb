@@ -7,12 +7,12 @@ class HomeController < ApplicationController
 
     @books = Book.search(params[:search])
     if @books.class == Array
-      @books = Kaminari.paginate_array(@books).page(params[:page])
+      @books = Kaminari.paginate_array(@books).page(params[:books_page])
     else
-      @books = @books.page(params[:page])
+      @books = @books.page(params[:books_page])
     end
 
-    @authors = Author.all.page(params[:page])
-    @users = User.all.page(params[:page])
+    @authors = Author.all.page(params[:authors_page])
+    @users = User.all.page(params[:users_page])
   end
 end
