@@ -1,14 +1,15 @@
 <div class="py-5 my-auto text-center w-75 mx-auto">
   <%=image_tag("book_icon.png", alt: "Example Image", width:"72", height:"57")%>
   <h1 class="display-5 fw-bold">Bookmarker</h1>
+  <h1 class="display-5 fw-bold"></h1>
   <div class="col-lg-6 mx-auto w-100">
-    <p class="lead mb-4">Easily track books you read through Bookmarker. After signing up, you can add new books, link them to its authors and keep track of how many books you read.</p>
+    <p class="lead mb-4"><%= t(:description) %></p>
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
       <% unless user_signed_in? %>
-        <%=  link_to 'Log in', new_user_session_path, class:"btn btn-light px-4 gap-3"  %>
-        <%=  link_to 'Sign up', new_user_registration_path, class:"btn btn-dark px-4"  %>
+        <%=  link_to t(:'devise.login_btn'), new_user_session_path, class:"btn btn-light px-4 gap-3"  %>
+        <%=  link_to t(:'devise.signup_btn'), new_user_registration_path, class:"btn btn-dark px-4"  %>
       <% else %>
-        <%=  link_to 'New Record', new_reading_record_path, class:"btn btn-dark px-4"  %>
+        <%=  link_to t(:new_record), new_reading_record_path, class:"btn btn-dark px-4"  %>
       <% end %>
     </div>
   </div>
@@ -16,12 +17,8 @@
   <% unless user_signed_in? %>
     <div class="row my-2">
       <div class="col-md-12">
-        <a class="btn btn-google btn-block text-uppercase btn-outline" href="<%= user_google_oauth2_omniauth_authorize_path %>"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Sign up Using Google</a>
+        <a class="btn btn-google btn-block text-uppercase btn-outline" href="<%= user_google_oauth2_omniauth_authorize_path %>"><img src="https://img.icons8.com/color/16/000000/google-logo.png"><%= " #{t(:'devise.login_google_btn')}" %></a>
       </div>
     </div>
   <% end %>
-
-<!--  <div class="m-4">-->
-    <%#= button_to "Connect to Twitter", "auth/twitter", method: :post, class:"btn btn-outline-info px-4" %>
-<!--  </div>-->
 </div>

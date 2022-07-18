@@ -10,6 +10,9 @@
   </li>
 </ul>
 
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="methodA" role="tabpanel" aria-labelledby="pills-home-tab">
+
     <form action="explore" method="get" class="form-signin m-3">
       <div class="form-group d-flex justify-content-center my-auto">
         <input type="text" id="search" name="search" class="form-control w-50 mx-2">
@@ -17,10 +20,8 @@
       </div>
     </form>
 
-<div class="tab-content" id="pills-tabContent">
-  <div class="tab-pane fade show active" id="methodA" role="tabpanel" aria-labelledby="pills-home-tab">
     <% if @books.length > 0 %>
-      <table class="table text-light table-active">
+      <table class="table text-light table-active table-sort">
         <thead>
         <tr>
           <th scope="col">Title</th>
@@ -36,7 +37,7 @@
             <td><%= link_to "#{book.title_sk}", book, class:"text-light text-decoration-none"  %></td>
             <td><%= link_to "#{book.author.full_name}", book.author, class:"text-light text-decoration-none"  %></td>
 <!--            <td><%#= link_to "#{book.rating}", book, class:"text-light text-decoration-none" %></td>-->
-            <td><%= render partial: "shared/star_rating", locals: {rating: book.rating}  %></td>
+            <td><%= render partial: "shared/star_rating", locals: {rating: book.rating} %> <%= "(#{book.ratings} reviews)" if book.ratings %></td>
 
           </tr>
         <% end %>
@@ -126,7 +127,4 @@
 
     $(`#${localStorage.getItem("explore_category")}`).click();
 
-
-    <!--    ('#books').html('<%= escape_javascript render(@books) %>');-->
-<!--    $('.books').html('<%= escape_javascript(paginate(@books, :remote => true).to_s) %>');-->
 </script>

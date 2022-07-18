@@ -1,4 +1,4 @@
-<h1 class="text-center">Log in</h1>
+<h1 class="text-center"> <%= t(:'devise.login') %> </h1>
 
 <div class="form-signin my-4 mx-auto w-50">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -8,26 +8,26 @@
     </div>
 
     <div class="form-group mb-3">
-      <%= f.label :password %><br />
+      <%= f.label t(:'devise.password') %><br />
       <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
     </div>
 
     <div class="my-3 text-white">
-      <%= "Don't have an account yet?" %>
+      <%= t(:'devise.dont_have_account_yet') %>
       <div class="my-3 text-white fw-bold">
         <%= render "devise/shared/links" %>
       </div>
     </div>
 
     <div class="actions">
-      <%= f.submit "Log in", class:"btn btn-light my-auto" %>
+      <%= f.submit t(:'devise.login_btn'), class:"btn btn-light my-auto" %>
     </div>
 
   <% end %>
 
   <div class="row my-2">
     <div class="col-md-12">
-      <a class="btn btn-google btn-block text-uppercase btn-outline" href="<%= user_google_oauth2_omniauth_authorize_path %>"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Sign In Using Google</a>
+      <a class="btn btn-google btn-block text-uppercase btn-outline" href="<%= user_google_oauth2_omniauth_authorize_path %>"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> <%= t(:'devise.login_google_btn') %> </a>
     </div>
   </div>
 

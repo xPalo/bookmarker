@@ -1,7 +1,7 @@
 <div>
   <%= link_to 'Bookmarker', root_path, class:"navbar-brand fs-2 my-auto fw-bold float-md-start text-white" %>
   <nav class="nav nav-masthead justify-content-center float-md-end m-0">
-    <%= link_to 'Explore', explore_path, class:"nav-link fw-bold px-2 #{current_class?(explore_path, "light")}" %>
+    <%= link_to t(:'header.explore'), explore_path, class:"nav-link fw-bold px-2 #{current_class?(explore_path, "light")}" %>
 
     <% if user_signed_in? %>
       <% if current_user.is_admin? %>
@@ -11,10 +11,10 @@
             Admin
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><%= link_to 'New Book', new_book_path, class:"nav-link text-dark fw-bold px-2" %></li>
-            <li><%= link_to 'Books', books_path, class:"nav-link text-dark fw-bold px-2" %></li>
-            <li><%= link_to 'New Author', new_author_path, class:"nav-link text-dark fw-bold px-2" %></li>
-            <li><%= link_to 'Authors', authors_path, class:"nav-link text-dark fw-bold px-2" %></li>
+            <li><%= link_to t(:'header.new_book'), new_book_path, class:"nav-link text-dark fw-bold px-2" %></li>
+            <li><%= link_to t(:'header.books'), books_path, class:"nav-link text-dark fw-bold px-2" %></li>
+            <li><%= link_to t(:'header.new_author'), new_author_path, class:"nav-link text-dark fw-bold px-2" %></li>
+            <li><%= link_to t(:'header.authors'), authors_path, class:"nav-link text-dark fw-bold px-2" %></li>
           </ul>
         </li>
 
@@ -22,21 +22,21 @@
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          My profile
+          <%= t(:'header.my_profile') %>
         </a>
         <ul class="dropdown-menu">
-          <li><%= link_to 'My Records', reading_records_path, class:"nav-link text-dark fw-bold px-2" %></li>
-          <li><%= link_to 'My Reviews', reviews_path, class:"nav-link text-dark fw-bold px-2" %></li>
-          <li><%= link_to 'Overview', user_path(id: current_user.id), class:"nav-link text-dark fw-bold px-2" %></li>
-          <li><%= link_to "Edit profile", edit_user_registration_path, class:"nav-link text-dark fw-bold px-2" %></li>
+          <li><%= link_to t(:'header.my_records'), reading_records_path, class:"nav-link text-dark fw-bold px-2" %></li>
+          <li><%= link_to t(:'header.my_reviews'), reviews_path, class:"nav-link text-dark fw-bold px-2" %></li>
+          <li><%= link_to t(:'header.overview'), user_path(id: current_user.id), class:"nav-link text-dark fw-bold px-2" %></li>
+          <li><%= link_to t(:'header.edit_profile'), edit_user_registration_path, class:"nav-link text-dark fw-bold px-2" %></li>
         </ul>
       </li>
 
       <%#= link_to 'Profile', user_path(id: current_user.id), class:"nav-link fw-bold py-1 px-2 text-warning #{current_class?(user_path(id: current_user.id), "warning")}" %>
-      <%= button_to 'Log out', destroy_user_session_path, method: :delete, class:"btn btn-link nav-link fw-bold px-2 text-danger danger" %>
+      <%= button_to t(:'header.log_out'), destroy_user_session_path, method: :delete, class:"btn btn-link nav-link fw-bold px-2 text-danger danger" %>
     <% else %>
-      <%= link_to 'Sign up', new_user_registration_path, class:"nav-link fw-bold px-2 #{current_class?(new_user_registration_path, "light")}" %>
-      <%= link_to 'Log in', new_user_session_path, class:"nav-link fw-bold px-2 text-info #{current_class?(new_user_session_path, "info")}" %>
+      <%= link_to t(:'header.sign_up'), new_user_registration_path, class:"nav-link fw-bold px-2 #{current_class?(new_user_registration_path, "light")}" %>
+      <%= link_to t(:'header.log_in'), new_user_session_path, class:"nav-link fw-bold px-2 text-info #{current_class?(new_user_session_path, "info")}" %>
     <% end %>
   </nav>
 </div>

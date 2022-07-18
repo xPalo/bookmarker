@@ -1,5 +1,5 @@
 <p>
   <% if user_signed_in? %>
-    <b><%= current_user.full_name %></b>, welcome to
+    <b><%= current_user.full_name %></b>, <%= t(:'footer.welcome') %>
   <% end %>
-  Bookmarker. Follow on <a href="https://github.com/xPalo/bookmarker" class="text-white">GitHub</a>, or <a href="https://bookmarker-academy.herokuapp.com/" class="text-white">Heroku</a>.</p>
+  <%= t(:'footer.follow') %> <a href="https://github.com/xPalo/bookmarker" class="text-white">GitHub</a>, <%= t(:'footer.or') %> <a href="https://bookmarker-academy.herokuapp.com/" class="text-white">Heroku</a>.</p>
