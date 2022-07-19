@@ -18,6 +18,24 @@ class Book < ApplicationRecord
     end
   end
 
+  def comparison_rating
+    if self.reviews.length > 0
+      sum = 0
+      self.reviews.each { |r| sum += r.score }
+      (sum/self.reviews.length)*10
+    else
+      -1
+    end
+  end
+
+  def comparison_ratings
+    if self.reviews.length > 0
+      reviews.length
+    else
+      0
+    end
+  end
+
   def ratings
     if self.reviews.length > 0
       reviews.length
