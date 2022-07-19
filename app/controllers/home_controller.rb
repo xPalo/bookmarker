@@ -3,7 +3,9 @@ class HomeController < ApplicationController
   end
 
   def explore
-    #@books = Book.reorder("title").includes(:author).page(params[:page])
+    if params[:search] && (params[:search].length > 0)
+      @can_reset = true
+    end
 
     @books = Book.search(params[:search])
     if @books.class == Array
@@ -14,5 +16,12 @@ class HomeController < ApplicationController
 
     @authors = Author.all.page(params[:authors_page])
     @users = User.all.page(params[:users_page])
+  end
+
+  def change_locale
+    lang = params[:locale].to_s.strip.to_sym
+    lang = I18n.default_locale unless I18n.available_locales.include?(lang)
+    cookies[:lang] = lang
+redirect_to request.referer || root_url
   end
 end

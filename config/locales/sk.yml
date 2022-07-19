@@ -1,4 +1,6 @@
 sk:
+  en: "Angličtina"
+  sk: "Slovenčina"
   hello: "Ahoj svet!"
   devise:
     login_btn: "Prihlásiť sa"
@@ -78,4 +80,46 @@ sk:
   create_review: "Vytvoriť recenziu"
   score: "Skóre"
   my_thoughts: "Moje postrehy"
-
+  reset_search: "Resetovať vyhľadávanie"
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Žiadne dostupné výsledky"
+          one: "Zobrazený <b>1</b> výsledok"
+          other: "Zobrazených <b>všetkých %{count}</b> výsledkov"
+      more_pages:
+        display_entries: "Zobrazených <b>%{first}&nbsp;-&nbsp;%{last}</b> výsledkov z celkových <b>%{total}</b>"
+  record_status:
+    read: "Prečítané"
+    reading: "Práve čítané"
+    plan_to_read: "Naplánované"
+  notice:
+    not_authorized: "Nemáte oprávnenie na manipuláciu"
+    author:
+      created: "Autor bol úspešne vytvorený"
+      updated: "Autor bol úspešne aktualizovaný"
+      deleted: "Autor bol úspešne odstránený"
+    book:
+      created: "Kniha bola úspešne vytvorená"
+      updated: "Kniha bola úspešne aktualizovaná"
+      deleted: "Kniha bola úspešne odstránená"
+    records:
+      created: "Záznam bol úspešne vytvorený"
+      updated: "Záznam bol úspešne aktualizovaný"
+      deleted: "Záznam bol úspešne odtránený"
+      marked_as_read: "Záznam bol označený ako prečítaný"
+      marked_as_reading: "Záznam bol označený ako práve čítaný"
+      already_keeping_track: "Už si vediete záznam o"
+    reviews:
+      created: "Recenzia bola úspešne vytvorená"
+      updated: "Recenzia bola úspešne aktualizovaná"
+      deleted: "Recenzia bola úspešne odtránená"
+      already_reviewed: "Už ste uverejnili recenziu na"

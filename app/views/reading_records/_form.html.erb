@@ -24,7 +24,7 @@
 
       <div class="form-group mb-3 text-black">
         <%= form.label t(:'records.status'), class:"text-light" %>
-        <%= form.select :status, options_for_select(ReadingRecord.statuses.map {|key, value| [key.titleize, ReadingRecord.statuses.key(value)]}, reading_record.status), {}, {class: "form-select"} %>
+        <%= form.select :status, options_for_select(ReadingRecord.statuses.map {|key, value| [t(:"record_status.#{key}"), ReadingRecord.statuses.key(value)]}, reading_record.status), {}, {class: "form-select"} %>
       </div>
 
       <div>

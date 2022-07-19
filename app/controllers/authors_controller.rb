@@ -4,7 +4,6 @@ class AuthorsController < ApplicationController
   # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    #@authors = current_user.authors.page(params[:page])
     @authors = Author.all.page(params[:page])
   end
 
@@ -23,7 +22,7 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
-        format.html { redirect_to author_url(@author), notice: "Author was successfully created." }
+        format.html { redirect_to author_url(@author), notice: t(:'notice.author.created') }
         format.json { render :show, status: :created, location: @author }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -35,7 +34,7 @@ class AuthorsController < ApplicationController
   def update
     respond_to do |format|
       if @author.update(author_params)
-        format.html { redirect_to author_url(@author), notice: "Author was successfully updated." }
+        format.html { redirect_to author_url(@author), notice: t(:'notice.author.updated') }
         format.json { render :show, status: :ok, location: @author }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,14 +47,14 @@ class AuthorsController < ApplicationController
     @author.destroy
 
     respond_to do |format|
-      format.html { redirect_to authors_url, notice: "Author was successfully destroyed." }
+      format.html { redirect_to authors_url, notice: t(:'notice.author.deleted') }
       format.json { head :no_content }
     end
   end
 
   def correct_user
     @author = current_user.authors.find_by(id: params[:id])
-    redirect_to books_path, notice: "Not authorized to manipulate" if @author.nil?
+    redirect_to books_path, alert: t(:'notice.not_authorized') if @author.nil?
   end
 
   private

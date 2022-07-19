@@ -29,12 +29,12 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.build(s_params)
 
     if Review.where(user_id: s_params[:user_id], book_id: s_params[:book_id]).first != nil
-      redirect_to reviews_url, alert: "You already reviewed the `#{@review.book.title}`"
+      redirect_to reviews_url, alert: "#{t(:'notice.reviews.already_reviewed')} `#{@review.book.title}`"
     else
       respond_to do |format|
         if @review.save
 
-          format.html { redirect_to root_url, notice: "Review was successfully created." }
+          format.html { redirect_to root_url, notice: t(:'notice.reviews.created') }
           format.json { render :show, status: :created, location: @review }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +47,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(author_params)
-        format.html { redirect_to author_url(@review), notice: "Review was successfully updated." }
+        format.html { redirect_to author_url(@review), notice: t(:'notice.reviews.updated') }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,14 +60,14 @@ class ReviewsController < ApplicationController
     @review.destroy
 
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: "Review was successfully destroyed." }
+      format.html { redirect_to reviews_url, notice: t(:'notice.reviews.deleted') }
       format.json { head :no_content }
     end
   end
 
   def correct_user
     @author = current_user.authors.find_by(id: params[:id])
-    redirect_to books_path, notice: "Not authorized to manipulate" if @author.nil?
+    redirect_to books_path, alert: t(:'notice.not_authorized') if @author.nil?
   end
 
   private

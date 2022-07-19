@@ -149,6 +149,9 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    kaminari-i18n (0.5.0)
+      kaminari
+      rails
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -323,6 +326,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   kaminari
+  kaminari-i18n (~> 0.5.0)
   omniauth-google-oauth2 (~> 0.8.2)
   pg (~> 1.4, >= 1.4.1)
   puma (~> 5.0)

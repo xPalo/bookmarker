@@ -4,8 +4,6 @@ class BooksController < ApplicationController
   # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    #@books = Book.reorder("title").page(params[:page])
-
     @books = Book.search(params[:search])
     if @books.class == Array
       @books = Kaminari.paginate_array(@books).page(params[:page])
@@ -32,7 +30,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to book_url(@book), notice: "Book was successfully created." }
+        format.html { redirect_to book_url(@book), notice: t(:'notice.book.created') }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,7 +42,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to book_url(@book), notice: "Book was successfully updated." }
+        format.html { redirect_to book_url(@book), notice: t(:'notice.book.updated') }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,7 +55,7 @@ class BooksController < ApplicationController
     @book.destroy
 
     respond_to do |format|
-      format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
+      format.html { redirect_to books_url, notice: t(:'notice.book.deleted') }
       format.json { head :no_content }
     end
   end
@@ -65,7 +63,7 @@ class BooksController < ApplicationController
   def correct_user
     @book = Book.find_by_id(params[:id])
     @author = current_user.authors.find_by(id: @book.author_id)
-    redirect_to authors_path, notice: "Not authorized to manipulate" if @book.nil? || @author.nil?
+    redirect_to authors_path, alert: t(:'notice.not_authorized') if @book.nil? || @author.nil?
   end
 
   private

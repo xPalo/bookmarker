@@ -11,7 +11,7 @@ class ReadingRecordsController < ApplicationController
 
     if @reading_record.update(s_params)
       respond_to do |format|
-        format.html { redirect_to reading_records_url(@reading_record), notice: "Record was successfully marked as reading." }
+        format.html { redirect_to reading_records_url, notice: t(:'notice.records.marked_as_reading') }
         format.json { render :show, status: :ok, location: @reading_record }
       end
     else
@@ -29,7 +29,7 @@ class ReadingRecordsController < ApplicationController
 
     if @reading_record.update(s_params)
       respond_to do |format|
-        format.html { redirect_to reading_records_url(@reading_record), notice: "Record was successfully marked as read." }
+        format.html { redirect_to reading_records_url, notice: t(:'notice.records.marked_as_read') }
         format.json { render :show, status: :ok, location: @reading_record }
       end
     else
@@ -63,11 +63,11 @@ class ReadingRecordsController < ApplicationController
     @reading_record = current_user.reading_records.build(s_params)
 
     if ReadingRecord.where(user_id: s_params[:user_id], book_id: s_params[:book_id]).first != nil
-      redirect_to reading_records_url, alert: "You already keep track of the `#{@reading_record.book.title}`"
+      redirect_to reading_records_url, alert: "#{t(:'notice.records.already_keeping_track')} `#{@reading_record.book.title}`"
     else
       respond_to do |format|
         if @reading_record.save
-          format.html { redirect_to reading_record_url(@reading_record), notice: "Record was successfully created." }
+          format.html { redirect_to reading_record_url(@reading_record), notice: t(:'notice.records.created') }
           format.json { render :show, status: :created, location: @reading_record }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -80,7 +80,7 @@ class ReadingRecordsController < ApplicationController
   def update
     respond_to do |format|
       if @reading_record.update(strong_params)
-        format.html { redirect_to author_url(@reading_record), notice: "Record was successfully updated." }
+        format.html { redirect_to author_url(@reading_record), notice: t(:'notice.records.updated') }
         format.json { render :show, status: :ok, location: @reading_record }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -93,14 +93,14 @@ class ReadingRecordsController < ApplicationController
     @reading_record.destroy
 
     respond_to do |format|
-      format.html { redirect_to authors_url, notice: "Record was successfully destroyed." }
+      format.html { redirect_to authors_url, notice: t(:'notice.records.deleted') }
       format.json { head :no_content }
     end
   end
 
   def correct_user
     @author = current_user.authors.find_by(id: params[:id])
-    redirect_to books_path, notice: "Not authorized to manipulate" if @author.nil?
+    redirect_to books_path, alert: t(:'notice.not_authorized') if @author.nil?
   end
 
   private

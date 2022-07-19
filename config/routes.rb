@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :users, :except => [:edit, :update, :destroy]
 
   get "/explore", to: "home#explore"
+  # get "/set_locale", to: "home#set_locale"
+  match "lang/:locale", to: "home#change_locale", as: :change_locale, via: [:get]
 
   root "home#index"
 end

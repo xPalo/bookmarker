@@ -20,14 +20,14 @@ gem "select2-rails"
 gem "jquery-rails"
 gem "kaminari"
 gem "bootstrap5-kaminari-views"
-
+gem "kaminari-i18n", "~> 0.5.0"
 gem "image_processing"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  # gem "rspec-rails", "~> 6.0.0.rc1"
   gem "factory_bot"
   gem "faker"
+  # gem "rspec-rails", "~> 6.0.0.rc1"
   # gem "shoulda-matchers"
 end
 
