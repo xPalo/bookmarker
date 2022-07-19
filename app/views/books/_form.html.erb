@@ -14,12 +14,12 @@
     <% end %>
 
       <div class="form-group mb-3">
-        <%= form.label :title %>
+        <%= form.label t(:title) %>
         <%= form.text_field :title, class:"form-control" %>
       </div>
 
     <div class="form-group mb-3">
-      <%= form.label :title_sk %>
+      <%= form.label "SK #{t(:title)}" %>
       <%= form.text_field :title_sk, class:"form-control" %>
     </div>
 
@@ -29,12 +29,12 @@
       </div>
 
       <div>
-        <%= form.label :author_id %>
+        <%= form.label t(:author) %>
         <%= form.select :author_id, options_for_select(@current_authors_options.map{|a| ["#{a.first_name} #{a.last_name}", a.id]}),{}, {class: 'form-select mb-3'} %>
       </div>
 
       <div>
-        <%= form.submit class:"btn btn-lg btn-primary my-auto"%>
+        <%= form.submit t(:create_book), class:"btn btn-lg btn-primary my-auto"%>
       </div>
     <% end %>
   <%# end %>

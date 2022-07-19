@@ -31,7 +31,7 @@
     <div class="form-group mb-3">
       <%= f.label t(:'devise.password') %>
       <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= "#{@minimum_password_length} #{t(:'devise.minimum_characters')}" %>)</em>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
     </div>

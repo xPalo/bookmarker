@@ -1,4 +1,4 @@
-<h1 class="text-center">New reading record</h1>
+<h1 class="text-center"><%= t(:new_record) %></h1>
 
 <script>
     $(document).ready(function()
@@ -10,13 +10,11 @@
     });
 </script>
 
-<%#= render partial: "shared/select2ify", locals: {id_to_select2ify: "#book_id_select"} %>
-
 <%= render "form", reading_record: @reading_record, class:"text-black" %>
 
 <br>
 
 <div class="w-75 mx-auto">
-  <%= link_to "Home", root_path, class:"btn btn-outline-light" %>
+  <%= link_to t(:back), root_path, class:"btn btn-outline-light" %>
 </div>
 

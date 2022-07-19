@@ -4,9 +4,9 @@
   <table class="table table-hover table-active text-light">
         <thead>
             <tr>
-              <th scope="col">Name</th>
+              <th scope="col"><%= t(:name) %></th>
               <th scope="col">Email</th>
-              <th scope="col">Action</th>
+              <th scope="col"><%= t(:action) %></th>
             </tr>
         </thead>
         <tbody>
@@ -14,7 +14,7 @@
               <tr class="text-light">
                 <td><%= user.full_name %></td>
                 <td><%= user.email %></td>
-                <td><%= link_to "Show", user, class:"text-info" %></td>
+                <td><%= link_to t(:show), user, class:"text-info" %></td>
               </tr>
           <% end %>
         </tbody>

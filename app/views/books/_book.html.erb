@@ -3,7 +3,7 @@
     <h1 class="display-5 fw-bold"><%= book.title %></h1>
 
     <p class="card-text">
-      <strong>SK title:</strong>
+      <strong>SK <%= t(:title) %>:</strong>
       <%= book.title_sk %>
     </p>
 
@@ -13,29 +13,24 @@
     </p>
 
     <p class="card-text">
-      <strong>Author:</strong>
+      <strong><%= t(:author) %>:</strong>
       <%= link_to "#{book.author.first_name} #{book.author.last_name}", book.author, class:"text-light" %>
     </p>
 
     <p class="card-text">
-      <strong>Rating:</strong>
+      <strong><%= t(:rating) %>:</strong>
       <%= "#{book.rating}%" %>
     </p>
 
     <% if current_user.is_admin? %>
       <div class="d-flex justify-content-center">
-        <%= link_to "Edit", edit_book_path(@book), class:"btn btn-light me-3" %>
-        <%= link_to "Back", books_path, class:"btn btn-info me-3" %>
-        <%= button_to "Delete", @book, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class:"btn btn-danger me-3" %>
-
-        <% if current_user.have_read(book.id) == true %>
-          <%= link_to "Review", new_review_path(book_to_review: book.id), class:"btn btn-info me-3" %>
-        <% end %>
+        <%= link_to t(:edit), edit_book_path(@book), class:"btn btn-light me-3" %>
+        <%= link_to t(:back), books_path, class:"btn btn-info me-3" %>
+        <%= button_to t(:delete), @book, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class:"btn btn-danger me-3" %>
       </div>
-    <% else %>
-      <% if current_user.have_read(book.id) == true %>
-        <%= link_to "Review", new_review_path(book_to_review: book.id), class:"btn btn-info me-3" %>
-      <% end %>
+    <% end %>
+    <% if current_user.have_read(book.id) == true %>
+      <%= link_to t(:review), new_review_path(book_to_review: book.id), class:"btn btn-info me-3" %>
     <% end %>
   </div>
 </div>

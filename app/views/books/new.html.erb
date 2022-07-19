@@ -1,9 +1,9 @@
-<h1 class="text-center">New book</h1>
+<h1 class="text-center"><%= t(:create_book) %></h1>
 
 <%= render "form", book: @book, author: @author %>
 
 <br>
 
 <div class="w-75 mx-auto">
-  <%= link_to "Back", books_path, class:"btn btn-outline-light" %>
+  <%= link_to t(:back), books_path, class:"btn btn-outline-light" %>
 </div>

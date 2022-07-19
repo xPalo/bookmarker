@@ -1,9 +1,9 @@
-<h1 class="text-center">New author</h1>
+<h1 class="text-center"><%= t(:'header.new_author') %></h1>
 
 <%= render "form", author: @author %>
 
 <br>
 
 <div class="w-75 mx-auto">
-  <%= link_to "Back", authors_path, class:"btn btn-success me-2" %>
+  <%= link_to t(:back), authors_path, class:"btn btn-outline-light me-2" %>
 </div>

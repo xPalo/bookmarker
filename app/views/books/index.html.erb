@@ -1,4 +1,4 @@
-<h1 class="text-center">Books</h1>
+<h1 class="text-center"><%= t(:'header.books') %></h1>
 
 <div id="books" class="text-center mx-auto w-100">
 
@@ -8,10 +8,10 @@
     <table class="table text-light table-active">
       <thead>
       <tr>
-        <th scope="col">Title</th>
-        <th scope="col">SK Title</th>
-        <th scope="col">Author</th>
-        <th scope="col">Reviews</th>
+        <th scope="col"><%= t(:title) %></th>
+        <th scope="col">SK <%= t(:title) %></th>
+        <th scope="col"><%= t(:author) %></th>
+        <th scope="col"><%= t(:rating) %></th>
       </tr>
       </thead>
       <tbody>
@@ -31,7 +31,7 @@
   <%= page_entries_info @books %>
   <%= paginate @books, theme: 'bootstrap-5', pagination_class: "my-3 pagination-sm flex-wrap justify-content-center" %>
   <div class="d-flex justify-content-start">
-    <%= link_to "New book", new_book_path, class:"btn btn-light text-success" %>
+    <%= link_to t(:'header.new_book'), new_book_path, class:"btn btn-light text-success" %>
   </div>
 </div>
 

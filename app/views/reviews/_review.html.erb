@@ -10,7 +10,7 @@
       "<%= review.body %>"
     </p>
     <p class="card-text">
-      <strong>By:</strong>
+      <strong><%= t(:review_by) %>:</strong>
       <%= link_to " #{review.user.full_name}", user_path(id: review.user.id), class:"text-light text-decoration-none" %>
     </p>
   </div>
