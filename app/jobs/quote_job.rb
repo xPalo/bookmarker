@@ -17,7 +17,6 @@ class QuoteJob < ApplicationJob
     request["X-RapidAPI-Host"] = "quotes15.p.rapidapi.com"
 
     response = http.request(request)
-
     res = JSON.parse(response.read_body)
 
     puts res
