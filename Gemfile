@@ -24,6 +24,7 @@ gem "kaminari-i18n", "~> 0.5.0"
 gem "image_processing"
 gem "sidekiq"
 gem "whenever", :require => false
+gem "aws-sdk-s3", :require => false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
