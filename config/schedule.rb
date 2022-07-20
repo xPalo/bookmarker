@@ -1,5 +1,5 @@
-set :environment, "development"
+#set :environment, "development"
 
-every 1.day, at: "3:33 pm" do
+every 1.day, at: "12:00 pm" do
   runner "QuoteJob.perform_now"
 end
