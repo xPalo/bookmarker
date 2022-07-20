@@ -7,9 +7,9 @@ module ApplicationHelper
 
   def user_avatar(user, size=150)
     if user.avatar.attached?
-      user.avatar#.variant(resize: "#{size}x#{size}^", crop: "#{size}x#{size}+0+0").processed
+      user.avatar.variant(resize: "#{size}x#{size}^", crop: "#{size}x#{size}+0+0").processed
     else
-      "/default_avatar.png"#.variant(resize: "#{size}x#{size}^", crop: "#{size}x#{size}+0+0").processed
+      "/default_avatar.png".variant(resize: "#{size}x#{size}^", crop: "#{size}x#{size}+0+0").processed
     end
   end
 end

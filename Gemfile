@@ -42,6 +42,7 @@ end
 group :production do
   gem "rails_12factor", "0.0.2"
   gem "faker"
+  gem "image_processing"
 end
 
 group :test do
