@@ -6,7 +6,7 @@ Dotenv::Railtie.load
 
 module Bookmarker
   class Application < Rails::Application
-    config.time_zone = 'Europe/Bratislava'
+    config.time_zone = "Europe/Bratislava"
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
 
