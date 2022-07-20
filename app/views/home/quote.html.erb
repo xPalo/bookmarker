@@ -1,0 +1,13 @@
+<div class="py-5 my-auto text-center w-75 mx-auto">
+  <%=image_tag("book_icon.png", alt: "Example Image", width:"72", height:"57")%>
+  <h1 class="display-5 fw-bold"></h1>
+  <p>
+    <%= @quote.published_at.strftime('%d. %m. %Y') %>
+  </p>
+  <hr>
+  <div class="col-lg-6 mx-auto w-100">
+    <p class="lead mb-4"><%= "'#{@quote.content}'" %></p>
+  </div>
+  <hr>
+  <%= link_to t(:quote_source), @quote.url, class:"btn btn-outline-light btn-sm", target: :_blank %>
+</div>

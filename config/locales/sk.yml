@@ -139,3 +139,5 @@ sk:
     invalid_value: "Neplatný parameter na zoradenie"
     submit: "Zadať"
     search: "Vyhľadávanie"
+  quote_of_the_day: "Citát dňa"
+  quote_source: "Zdroj citátu"

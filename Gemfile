@@ -22,6 +22,8 @@ gem "kaminari"
 gem "bootstrap5-kaminari-views"
 gem "kaminari-i18n", "~> 0.5.0"
 gem "image_processing"
+gem "sidekiq"
+gem "whenever", :require => false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

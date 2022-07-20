@@ -142,3 +142,5 @@ en:
     invalid_value: "Invalid sorting parameter"
     submit: "Submit"
     search: "Search"
+  quote_of_the_day: "Quote of the day"
+  quote_source: "Quote source"
