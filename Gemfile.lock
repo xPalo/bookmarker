@@ -354,6 +354,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kaminari-i18n (~> 0.5.0)
+  mini_magick
   omniauth-google-oauth2 (~> 0.8.2)
   pg (~> 1.4, >= 1.4.1)
   puma (~> 5.0)
