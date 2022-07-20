@@ -49,7 +49,7 @@ class HomeController < ApplicationController
     end
 
     @authors = Author.all.page(params[:authors_page])
-    @users = User.all.page(params[:users_page])
+    @users = User.where.not(id: current_user.id).page(params[:page])
   end
 
   def change_locale
