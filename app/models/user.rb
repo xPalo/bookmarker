@@ -51,13 +51,11 @@ class User < ApplicationRecord
 
   def add_default_avatar
     unless avatar.attached?
-      image_file = File.open(Rails.root.join("app", "assets", "images", "default_avatar.png"))
       avatar.attach(
-        io: image_file,
+        io: File.open(Rails.root.join("app", "assets", "images", "default_avatar.png")),
         filename: "default_avatar.png",
         content_type: "image/png"
       )
-      image_file.rewind
     end
   end
 
