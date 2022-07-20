@@ -20,7 +20,9 @@ class QuoteJob < ApplicationJob
 
     res = JSON.parse(response.read_body)
 
-    quote = Quote.new("language_code" => res["language_code"], "content" => res["content"], "url" => res["url"], "published_at" => Time.now.in_time_zone('Europe/Bratislava'))
+    puts res
+
+    quote = Quote.new("language_code" => res["language_code"], "content" => res["content"], "url" => res["url"], "published_at" => Time.now.in_time_zone('Europe/Bratislava'), "author" => res["originator"]["name"])
     quote.save!
   end
 end
