@@ -1,7 +1,5 @@
-every :day, :at => "11am" do
-  runner "QuoteJob.perform_now"
-end
+set :environment, "development"
 
-every 1.day, at: "12:10 am" do
+every 1.day, at: "12:00 am" do
   runner "QuoteJob.perform_now"
 end
