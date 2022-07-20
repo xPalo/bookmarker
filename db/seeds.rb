@@ -1,18 +1,18 @@
-# 50.times do
-#   user = User.create! :first_name => Faker::Name.first_name,
-#                       :last_name => Faker::Name.unique.last_name,
-#                       :email => Faker::Internet.unique.email,
-#                       :bio => Faker::Quote.famous_last_words,
-#                       :is_admin => false,
-#                       :password => 'asdasd',
-#                       :password_confirmation => 'asdasd'
-# end
+50.times do
+  user = User.create! :first_name => Faker::Name.first_name,
+                      :last_name => Faker::Name.unique.last_name,
+                      :email => Faker::Internet.unique.email,
+                      :bio => Faker::Quote.famous_last_words,
+                      :is_admin => false,
+                      :password => 'asdasd',
+                      :password_confirmation => 'asdasd'
+end
 
-# 100.times do
-#   author = Author.create! :first_name => Faker::Name.first_name,
-#                         :last_name => Faker::Name.unique.last_name,
-#                         :country => Faker::Address.country
-# end
+100.times do
+  author = Author.create! :first_name => Faker::Name.first_name,
+                        :last_name => Faker::Name.unique.last_name,
+                        :country => Faker::Address.country
+end
 
 # 1000.times do
 #   book = Book.create! :title => Faker::Book.unique(max_retries = 1_000_000).title,
@@ -27,10 +27,10 @@
 #                       :status => rand(0..2)
 # end
 
-1000.times do
-  record = ReadingRecord.where(status: 2).sample
-  review = Review.create! :user_id => record.user_id,
-                          :book_id => record.book_id,
-                          :score => rand(0..10),
-                          :body => Faker::Quotes::Shakespeare.hamlet_quote
-end
+# 1000.times do
+#   record = ReadingRecord.where(status: 2).sample
+#   review = Review.create! :user_id => record.user_id,
+#                           :book_id => record.book_id,
+#                           :score => rand(0..10),
+#                           :body => Faker::Quotes::Shakespeare.hamlet_quote
+# end
