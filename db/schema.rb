@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_20_134316) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_21_080351) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,12 +62,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_134316) do
 
   create_table "quotes", force: :cascade do |t|
     t.string "language_code"
-    t.string "content"
+    t.string "content_en"
     t.string "url"
     t.datetime "published_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "author"
+    t.string "content_sk"
   end
 
   create_table "reading_records", force: :cascade do |t|

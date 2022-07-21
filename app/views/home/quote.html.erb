@@ -5,10 +5,16 @@
     <%= @quote.published_at.strftime('%d. %m. %Y') %>
   </p>
   <hr>
+
   <div class="col-lg-6 mx-auto w-100">
-    <p class="lead mb-4 fs-3"><%= "'#{@quote.content}'" %></p>
-    <p class="lead mb-4 fs-6"><%= "- #{@quote.author}" %></p>
+    <% if (I18n.locale == "sk") && (@quote.content_sk.length > 0) %>
+      <p class="lead mb-4 fs-3"><%= "'#{@quote.content_sk}'" %></p>
+    <% else %>
+      <p class="lead mb-4 fs-3"><%= "'#{@quote.content_en}'" %></p>
+    <% end %>
+      <p class="lead mb-4 fs-6"><%= "- #{@quote.author}" %></p>
   </div>
+
   <hr>
   <%= link_to t(:quote_source), @quote.url, class:"btn btn-outline-light btn-sm", target: :_blank %>
 </div>

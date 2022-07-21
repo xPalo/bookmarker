@@ -50,3 +50,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+gem "google-cloud-translate", "~> 0.22.0"
