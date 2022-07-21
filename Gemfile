@@ -25,6 +25,7 @@ gem "image_processing"
 gem "sidekiq"
 gem "whenever", :require => false
 gem "aws-sdk-s3", :require => false
+gem "httparty"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

@@ -15,8 +15,10 @@ Rails.application.routes.draw do
 
   get "/explore", to: "home#explore"
   get "/quote", to: "home#quote"
-  # get "/set_locale", to: "home#set_locale"
   match "lang/:locale", to: "home#change_locale", as: :change_locale, via: [:get]
 
   root "home#index"
+
+  require "sidekiq/web"
+  mount Sidekiq::Web => "/sidekiq"
 end

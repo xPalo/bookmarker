@@ -12,8 +12,6 @@ class HomeController < ApplicationController
       @can_reset = true
     end
 
-    puts "\n\n\n\n\nEXPLORE BEGAN\n\n\n\n\n\n"
-
     @books = Book.includes(:author).search(params[:search])
     if params[:order] && (params[:order].length > 0)
       case params[:order]
