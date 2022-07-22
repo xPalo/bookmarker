@@ -9,7 +9,39 @@ class HomeController < ApplicationController
   end
 
   def prehrajto
+    require "nokogiri"
+    require "httparty"
+    if params[:search_url] && params[:search_url].length > 0
 
+      params[:search_url] = params[:search_url][8..-1]
+      url = "https://prehrajto.cz/hledej/#{CGI.escape(params[:search_url])}"
+      unparsed_page = HTTParty.get(url)
+
+      puts "URL = #{url}"
+
+      unless unparsed_page.body.nil?
+
+        parsed_page = Nokogiri::HTML(unparsed_page)
+        result_divs = parsed_page.css("section").css("div.column")
+        puts "RESULT DIVS LENGTH = #{result_divs.length}"
+        #@search_result = parsed_page.css("section").to_s
+
+        @divs = Array.new
+        for r in result_divs do
+
+          div = {
+            href: r.css("a")[0].attributes["href"].value.strip,
+            image_src: r.css("img")[0].attributes["src"].value.strip,
+            duration: r.css("strong.video-item-info-time").text.strip,
+            size: r.css("strong.video-item-info-size").text.strip,
+            title: r.css("h2.video-item-title").text.strip
+          }
+
+          @divs << div
+        end
+
+      end
+    end
   end
 
   def explore

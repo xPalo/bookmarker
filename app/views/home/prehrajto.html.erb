@@ -4,11 +4,93 @@
 
   <div class="col-lg-6 mx-auto w-100">
     <input id="prehrajto_search" type="text" class="form-control">
+    <button id="prehrajto_search_button" class="btn btn-light mt-2">Search</button>
   </div>
   <hr>
-  <ul id="prehrajto_ul" class="list-group">
+  <ul id="prehrajto_ul" class="list-group"></ul>
 
-  </ul>
+  <div class="container d-flex justify-content-center">
+    <div class="row row-cols-1 row-cols-lg-2">
+
+      <% if @divs && !params[:movie_url] %>
+          <% @divs.each do |div| %>
+            <div class="col mb-2">
+              <div class="card mx-auto" style="width: 18rem;">
+                <img class="card-img-top" src="<%= div[:image_src] %>" alt="Card image cap">
+                <div class="card-body">
+                  <a href="<%= div[:href] %>"  class="card-title text-dark h5 text-decoration-none"><%= div[:title] %></a>
+                  <p class="card-text text-dark text-muted"><%= "#{div[:duration]} | #{div[:size]}" %></p>
+                </div>
+              </div>
+            </div>
+          <%end %>
+      <%end %>
+
+      <% if params[:movie_url] && params[:movie_url].length > 0 %>
+        <% @divs.each do |div| %>
+          <div class="col mb-2">
+            <div class="card mx-auto" style="width: 18rem;">
+              <img class="card-img-top" src="<%= div[:image_src] %>" alt="Card image cap">
+              <div class="card-body">
+                <a href="<%= div[:href] %>"  class="card-title text-dark h5 text-decoration-none"><%= div[:title] %></a>
+                <p class="card-text text-dark text-muted"><%= "#{div[:duration]} | #{div[:size]}" %></p>
+              </div>
+            </div>
+          </div>
+        <%end %>
+      <%end %>
+
+<!--      <div class="col mb-2">-->
+<!--        <div class="card mx-auto" style="width: 18rem;">-->
+<!--          <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">Card title</h5>-->
+<!--            <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col mb-2">-->
+<!--        <div class="card mx-auto" style="width: 18rem;">-->
+<!--          <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">Card title</h5>-->
+<!--            <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col mb-2">-->
+<!--        <div class="card mx-auto" style="width: 18rem;">-->
+<!--          <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">Card title</h5>-->
+<!--            <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col mb-2">-->
+<!--        <div class="card mx-auto" style="width: 18rem;">-->
+<!--          <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">Card title</h5>-->
+<!--            <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+    </div>
+  </div>
+
+  <% if @search_result %>
+    <%= sanitize @search_result %>
+  <% end %>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -37,11 +119,10 @@
                 for (let r of responseData)
                 {
                     let li = document.createElement("li");
-                    //li.class = "list-group-item"
                     li.setAttribute("class", "list-group-item")
                     let a = document.createElement("a");
                     a.innerText = r.phrase_data
-                    a.href = `https://prehrajto.cz${r.url}`
+                    a.href = `/prehrajto/?search_url=${r.url}`
 
                     li.appendChild(a)
                     ul.appendChild(li)
@@ -50,6 +131,11 @@
             }).fail(function() {
                 console.log("Failed");
             });
+        });
+
+        $("#prehrajto_search_button").on("click", function (){
+            let matchvalue = $("#prehrajto_search").val();
+            window.location.replace(`/prehrajto/?search_url=/hledej/${matchvalue}`)
         });
     });
 </script>

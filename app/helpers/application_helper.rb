@@ -12,4 +12,8 @@ module ApplicationHelper
       "/default_avatar.png".variant(resize: "#{size}x#{size}^", crop: "#{size}x#{size}+0+0").processed
     end
   end
+
+  # def open_movie(path)
+  #
+  # end
 end
