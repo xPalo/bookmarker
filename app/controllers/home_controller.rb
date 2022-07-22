@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  skip_before_action :verify_authenticity_token, :only => [:prehrajto]
+
   def index
   end
 
@@ -6,6 +8,9 @@ class HomeController < ApplicationController
     @quote = Quote.last
   end
 
+  def prehrajto
+
+  end
 
   def explore
     if (params[:search] && (params[:search].length > 0)) || (params[:order] && (params[:order].length > 0))

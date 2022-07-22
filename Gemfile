@@ -26,6 +26,7 @@ gem "sidekiq"
 gem "whenever", :require => false
 gem "aws-sdk-s3", :require => false
 gem "httparty"
+gem "rack-cors", :require => "rack/cors"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
