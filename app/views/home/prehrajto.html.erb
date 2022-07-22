@@ -1,24 +1,25 @@
 <div class="py-5 my-auto text-center w-75 mx-auto">
-  <h1 class="display-5 fw-bold">Prehrajto scraper</h1>
-  <hr>
+  <%=image_tag("film-icon.png", alt: "Example Image", width:"72", height:"57", class:"mb-3")%>
 
-  <div class="col-lg-6 mx-auto w-100">
-    <input id="prehrajto_search" type="text" class="form-control">
-    <button id="prehrajto_search_button" class="btn btn-light mt-2">Search</button>
+  <div class="input-group mb-3 d-flex justify-content-center">
+    <input id="prehrajto_search" style="border: none; max-width: 400px" type="text" class="form-control" placeholder="Search for a movie" aria-label="Search for a movie" aria-describedby="prehrajto_search_button">
+    <button id="prehrajto_search_button" class="btn btn-outline-light" type="button">Search</button>
   </div>
-  <hr>
-  <ul id="prehrajto_ul" class="list-group"></ul>
+
+  <ul id="prehrajto_ul" class="list-group mb-4"></ul>
+
 
   <div class="container d-flex justify-content-center">
     <div class="row row-cols-1 row-cols-lg-2">
 
       <% if @divs && !params[:movie_url] %>
-          <% @divs.each do |div| %>
-            <div class="col mb-2">
-              <div class="card mx-auto" style="width: 18rem;">
+        <% @divs.each do |div| %>
+            <div class="col mb-3">
+              <div class="card mx-auto" style="width: 18rem; border: none">
                 <img class="card-img-top" src="<%= div[:image_src] %>" alt="Card image cap">
                 <div class="card-body">
-                  <a href="<%= div[:href] %>"  class="card-title text-dark h5 text-decoration-none"><%= div[:title] %></a>
+<!--                  <a href="<%#= div[:href] %>"  class="card-title text-dark h5 text-decoration-none"><%#= div[:title] %></a>-->
+                  <a href="<%= "/prehrajto/?movie_url=#{div[:href]}" %>"  class="card-title text-dark h5 text-decoration-none"><%= div[:title] %></a>
                   <p class="card-text text-dark text-muted"><%= "#{div[:duration]} | #{div[:size]}" %></p>
                 </div>
               </div>
@@ -27,63 +28,14 @@
       <%end %>
 
       <% if params[:movie_url] && params[:movie_url].length > 0 %>
-        <% @divs.each do |div| %>
-          <div class="col mb-2">
-            <div class="card mx-auto" style="width: 18rem;">
-              <img class="card-img-top" src="<%= div[:image_src] %>" alt="Card image cap">
-              <div class="card-body">
-                <a href="<%= div[:href] %>"  class="card-title text-dark h5 text-decoration-none"><%= div[:title] %></a>
-                <p class="card-text text-dark text-muted"><%= "#{div[:duration]} | #{div[:size]}" %></p>
-              </div>
-            </div>
-          </div>
-        <%end %>
+        <div class="container mx-auto d-flex justify-content-center">
+          <video width="600" controls>
+            <source src="<%= @video_src %>" type="video/mp4">
+            <source src="mov_bbb.ogg" type="video/ogg">
+            Your browser does not support HTML video.
+          </video>
+        </div>
       <%end %>
-
-<!--      <div class="col mb-2">-->
-<!--        <div class="card mx-auto" style="width: 18rem;">-->
-<!--          <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
-<!--          <div class="card-body">-->
-<!--            <h5 class="card-title">Card title</h5>-->
-<!--            <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col mb-2">-->
-<!--        <div class="card mx-auto" style="width: 18rem;">-->
-<!--          <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
-<!--          <div class="card-body">-->
-<!--            <h5 class="card-title">Card title</h5>-->
-<!--            <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col mb-2">-->
-<!--        <div class="card mx-auto" style="width: 18rem;">-->
-<!--          <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
-<!--          <div class="card-body">-->
-<!--            <h5 class="card-title">Card title</h5>-->
-<!--            <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="col mb-2">-->
-<!--        <div class="card mx-auto" style="width: 18rem;">-->
-<!--          <img class="card-img-top" src=".../100px180/" alt="Card image cap">-->
-<!--          <div class="card-body">-->
-<!--            <h5 class="card-title">Card title</h5>-->
-<!--            <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-
 
     </div>
   </div>
@@ -118,14 +70,12 @@
                 ul.innerHTML = ""
                 for (let r of responseData)
                 {
-                    let li = document.createElement("li");
-                    li.setAttribute("class", "list-group-item")
                     let a = document.createElement("a");
+                    a.setAttribute("class", "list-group-item text-start")
                     a.innerText = r.phrase_data
                     a.href = `/prehrajto/?search_url=${r.url}`
 
-                    li.appendChild(a)
-                    ul.appendChild(li)
+                    ul.appendChild(a)
                 }
 
             }).fail(function() {
@@ -137,5 +87,6 @@
             let matchvalue = $("#prehrajto_search").val();
             window.location.replace(`/prehrajto/?search_url=/hledej/${matchvalue}`)
         });
+
     });
 </script>

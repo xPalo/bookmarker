@@ -11,20 +11,17 @@ class HomeController < ApplicationController
   def prehrajto
     require "nokogiri"
     require "httparty"
+
     if params[:search_url] && params[:search_url].length > 0
 
       params[:search_url] = params[:search_url][8..-1]
-      url = "https://prehrajto.cz/hledej/#{CGI.escape(params[:search_url])}"
+      url = "https://prehrajto.cz/hledej/#{CGI.escape(params[:search_url].to_s)}"
       unparsed_page = HTTParty.get(url)
-
-      puts "URL = #{url}"
 
       unless unparsed_page.body.nil?
 
         parsed_page = Nokogiri::HTML(unparsed_page)
         result_divs = parsed_page.css("section").css("div.column")
-        puts "RESULT DIVS LENGTH = #{result_divs.length}"
-        #@search_result = parsed_page.css("section").to_s
 
         @divs = Array.new
         for r in result_divs do
@@ -39,7 +36,20 @@ class HomeController < ApplicationController
 
           @divs << div
         end
+      end
+    end
 
+    if params[:movie_url] && params[:movie_url].length > 0
+
+      url = "https://prehrajto.cz/#{params[:movie_url]}"
+      unparsed_page = HTTParty.get(url)
+
+      puts "URL = #{url}"
+
+      unless unparsed_page.body.nil?
+        parsed_page = Nokogiri::HTML(unparsed_page)
+        storage_substring = parsed_page.to_s[parsed_page.to_s.index('var sources')..parsed_page.to_s.index('var tracks')]
+        @video_src = storage_substring[/#{"\""}(.*?)#{"\""}/m, 1].to_s
       end
     end
   end

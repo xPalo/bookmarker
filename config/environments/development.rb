@@ -6,6 +6,7 @@ Rails.application.configure do
   config.eager_load = false
   config.consider_all_requests_local = true
   config.server_timing = true
+  config.assets.compile = true
 
   if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
