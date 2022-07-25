@@ -13,7 +13,4 @@ module ApplicationHelper
     end
   end
 
-  # def open_movie(path)
-  #
-  # end
 end

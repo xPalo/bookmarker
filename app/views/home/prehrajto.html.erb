@@ -3,11 +3,11 @@
 
   <div class="input-group mb-3 d-flex justify-content-center">
     <input id="prehrajto_search" style="border: none; max-width: 400px" type="text" class="form-control" placeholder="Search for a movie" aria-label="Search for a movie" aria-describedby="prehrajto_search_button">
-    <button id="prehrajto_search_button" class="btn btn-outline-light" type="button">Search</button>
+
+    <ul id="prehrajto_ul" class="list-group mb-4 rounded" style="position: absolute; top: 50px; width: 400px; z-index: 100; box-shadow: #2E2F30"></ul>
+
+    <button id="prehrajto_search_button" class="btn btn-outline-light" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
   </div>
-
-  <ul id="prehrajto_ul" class="list-group mb-4"></ul>
-
 
   <div class="container d-flex justify-content-center">
     <div class="row row-cols-1 row-cols-lg-2">
@@ -18,7 +18,6 @@
               <div class="card mx-auto" style="width: 18rem; border: none">
                 <img class="card-img-top" src="<%= div[:image_src] %>" alt="Card image cap">
                 <div class="card-body">
-<!--                  <a href="<%#= div[:href] %>"  class="card-title text-dark h5 text-decoration-none"><%#= div[:title] %></a>-->
                   <a href="<%= "/prehrajto/?movie_url=#{div[:href]}" %>"  class="card-title text-dark h5 text-decoration-none"><%= div[:title] %></a>
                   <p class="card-text text-dark text-muted"><%= "#{div[:duration]} | #{div[:size]}" %></p>
                 </div>
