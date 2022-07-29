@@ -30,10 +30,10 @@ gem "rack-cors", :require => "rack/cors"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem "factory_bot"
   gem "faker"
-  gem "rspec-rails", "~> 6.0.0.rc1"
+  gem "factory_bot", :require => false
   gem "shoulda-matchers"
+  gem "rspec-rails", "~> 6.0.0.rc1"
 end
 
 group :development do
