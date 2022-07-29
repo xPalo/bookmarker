@@ -24,7 +24,7 @@ class HomeController < ApplicationController
         result_divs = parsed_page.css("section").css("div.column")
 
         @divs = Array.new
-        for r in result_divs do
+        result_divs.each { |r|
 
           div = {
             href: r.css("a")[0].attributes["href"].value.strip,
@@ -35,7 +35,7 @@ class HomeController < ApplicationController
           }
 
           @divs << div
-        end
+        }
       end
     end
 

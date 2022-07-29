@@ -1,7 +1,7 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: %i[ show edit update destroy ]
+  before_action :can_manipulate?, only: %i[ edit update destroy create new ]
   before_action :authenticate_user!
-  # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @authors = Author.all.page(params[:page])
@@ -52,12 +52,11 @@ class AuthorsController < ApplicationController
     end
   end
 
-  def correct_user
-    @author = current_user.authors.find_by(id: params[:id])
-    redirect_to books_path, alert: t(:'notice.not_authorized') if @author.nil?
-  end
-
   private
+
+    def can_manipulate?
+      redirect_to authors_path, notice: t(:not_authorized) unless current_user.is_admin
+    end
 
     def set_author
       @author = Author.find(params[:id])

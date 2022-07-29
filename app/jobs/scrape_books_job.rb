@@ -123,6 +123,3 @@ class ScrapeBooksJob < ApplicationJob
     end
   end
 end
-
-# src="https://storage1.premiumcdn.net/preview/31438115/A0VfKmF18CpzUk8IwQc4jI9Aiw5fZ0iZpIqkuENIg6C4PINYTGqIe0uk7CZpT7KF8msdauR3t68HpRfl1txdFXRi8Yib5UOPteXcQrha1tdwt0DtlxtJPU3Gs1JH2BUl5tmwFwlt63tZKs7js0G.mp4?expires=1658507117&hash=yX9nQ4iQlz7WbDEyfrhXbw"
-# src="https://storage1.premiumcdn.net/preview/31438115/A0VfKmF18CpzUk8IwQc4jI9Aiw5fZ0iZpIqkuENIg6C4PINYTGqIe0uk7CZpT7KF8msdauR3t68HpRfl1txdFXRi8Yib5UOPteXcQrha1tdwt0DtlxtJPU3Gs1JH2BUl5tmwFwlt63tZKs7js0G.mp4?expires=1658507117&hash=yX9nQ4iQlz7WbDEyfrhXbw"

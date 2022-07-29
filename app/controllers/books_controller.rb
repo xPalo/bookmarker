@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
+  before_action :can_manipulate?, only: %i[ edit update destroy create new ]
   before_action :authenticate_user!
-  # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @books = Book.search(params[:search])
@@ -60,13 +60,11 @@ class BooksController < ApplicationController
     end
   end
 
-  def correct_user
-    @book = Book.find_by_id(params[:id])
-    @author = current_user.authors.find_by(id: @book.author_id)
-    redirect_to authors_path, alert: t(:'notice.not_authorized') if @book.nil? || @author.nil?
-  end
-
   private
+
+  def can_manipulate?
+    redirect_to books_path, notice: t(:not_authorized) unless current_user.is_admin
+  end
 
   def set_book
     @book = Book.find(params[:id])

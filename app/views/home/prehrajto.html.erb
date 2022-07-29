@@ -26,15 +26,13 @@
           <%end %>
       <%end %>
 
-      <% if params[:movie_url] && params[:movie_url].length > 0 %>
+      <% if params[:movie_url] && params[:movie_url].length > 0 && @video_src %>
         <div class="container mx-auto d-flex justify-content-center">
           <video width="600" controls>
             <source src="<%= @video_src %>" type="video/mp4">
-            <source src="mov_bbb.ogg" type="video/ogg">
-            Your browser does not support HTML video.
           </video>
         </div>
-      <%end %>
+      <% end %>
 
     </div>
   </div>

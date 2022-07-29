@@ -144,3 +144,5 @@ en:
     search: "Search"
   quote_of_the_day: "Quote of the day"
   quote_source: "Quote source"
+  video_loading_fail: "Something went wrong :("
+  not_authorized: "You are not authorized to manipulate"

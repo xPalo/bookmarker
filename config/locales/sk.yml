@@ -141,3 +141,5 @@ sk:
     search: "Vyhľadávanie"
   quote_of_the_day: "Citát dňa"
   quote_source: "Zdroj citátu"
+  video_loading_fail: "Niečo sa pokazilo :("
+  not_authorized: "Nemáte oprávnenie na manipuláciu"

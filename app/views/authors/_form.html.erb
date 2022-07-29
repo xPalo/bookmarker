@@ -32,6 +32,6 @@
       <%= form.number_field :user_id, id: :author_user_id, type: :hidden, class:"form-control", value: current_user.id %>
     </div>
 
-    <%= form.submit t(:create_author), class:"btn btn-lg btn-light my-auto"%>
+    <%= form.submit t(:'order.submit'), class:"btn btn-lg btn-light my-auto"%>
   <% end %>
 </div>

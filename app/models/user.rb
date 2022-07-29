@@ -14,6 +14,10 @@ class User < ApplicationRecord
     "#{self.first_name} #{self.last_name}"
   end
 
+  def is_admin?
+    self.is_admin
+  end
+
   def have_read(book_id)
     if ReadingRecord.where(user_id: self.id, book_id: book_id, status: "read").first != nil
       true

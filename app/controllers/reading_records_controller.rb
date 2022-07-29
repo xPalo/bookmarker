@@ -1,5 +1,6 @@
 class ReadingRecordsController < ApplicationController
   before_action :set_reading_record, only: [:show, :edit, :update, :destroy, :mark_as_read, :mark_as_reading]
+  before_action :can_manipulate?, only: %i[ edit update destroy create new mark_as_read mark_as_reading ]
   before_action :authenticate_user!
 
   def mark_as_reading
@@ -98,12 +99,11 @@ class ReadingRecordsController < ApplicationController
     end
   end
 
-  def correct_user
-    @author = current_user.authors.find_by(id: params[:id])
-    redirect_to books_path, alert: t(:'notice.not_authorized') if @author.nil?
-  end
-
   private
+
+  def can_manipulate?
+    redirect_to reading_records_path, notice: t(:not_authorized) unless @reading_record.user_id == current_user.id || current_user.is_admin
+  end
 
   def set_reading_record
     @reading_record = ReadingRecord.find(params[:id])
